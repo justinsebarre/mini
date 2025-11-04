@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Function Mini Projects - Group 3</title>
+<link rel="icon" type="image/png" href="cdm_logo.png"> <!-- ✅ Colegio de Montalban favicon -->
+
+<!-- ICONS -->
+<link href="https://unpkg.com/lucide-static/font/lucide.css" rel="stylesheet">
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 🎓 Colegio de Montalban Logo */
+    .school-logo {
+        width: 110px;
+        height: 110px;
+        margin-top: 20px;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        object-fit: cover;
+    }
+
+    /* 🌈 Animated Marquee Header */
+    .banner {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(8px);
+        border-bottom: 2px solid rgba(255,255,255,0.3);
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .banner span {
+        display: inline-block;
+        padding: 10px 0;
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 2px;
+        animation: scrollText 12s linear infinite;
+    }
+
+    @keyframes scrollText {
+        from { transform: translateX(100%); }
+        to { transform: translateX(-100%); }
+    }
+
+    h1 {
+        color: white;
+        margin-top: 10px;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    }
+
+    .tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .tab-btn {
+        background: white;
+        color: #333;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.3s;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+        background: #5563DE;
+        color: white;
+        transform: scale(1.05);
+    }
+
+    .content {
+        background: white;
+        width: 90%;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        text-align: center;
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .content.active {
+        display: block;
+    }
+
+    input, select, button {
+        margin: 8px 0;
+        padding: 10px;
+        width: 85%;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    button {
+        background: #667eea;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #5a67d8;
+    }
+
+    p.result {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(10px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    footer {
+        margin-top: 30px;
+        color: white;
+        font-size: 13px;
+        opacity: 0.8;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<!-- 🏫 Colegio de Montalban Logo -->
+<img src="c:\Users\DESKTOP\Pictures\c.png" alt="Colegio de Montalban Logo" class="school-logo">
+
+<!-- 🌟 Animated Header -->
+<div class="banner">
+    <span>✨ GROUP 3 — FUNCTION MINI PROJECT ✨ | Colegio de Montalban | BSIT 2B 2nd Year </span>
+</div>
+
+<h1>⚙️ Function Mini Projects</h1>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="showTab('calc')"><i class="lucide-calculator"></i>Calculator</button>
+    <button class="tab-btn" onclick="showTab('grade')"><i class="lucide-book"></i>Grades</button>
+    <button class="tab-btn" onclick="showTab('temp')"><i class="lucide-thermometer"></i>Temperature</button>
+    <button class="tab-btn" onclick="showTab('bmi')"><i class="lucide-activity"></i>BMI</button>
+    <button class="tab-btn" onclick="showTab('evenodd')"><i class="lucide-hash"></i>Even/Odd</button>
+</div>
+
+<!-- Calculator -->
+<div id="calc" class="content active">
+    <h2>Function Calculator</h2>
+    <input type="number" id="n1" placeholder="First number">
+    <input type="number" id="n2" placeholder="Second number"><br>
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Subtract</button>
+    <button onclick="multiply()">Multiply</button>
+    <button onclick="divide()">Divide</button>
+    <p id="result1" class="result"></p>
+</div>
+
+<!-- Grade Calculator -->
+<div id="grade" class="content">
+    <h2>Grade Calculator</h2>
+    <input type="number" id="prelim" placeholder="Prelim Grade">
+    <input type="number" id="midterm" placeholder="Midterm Grade">
+    <input type="number" id="final" placeholder="Final Grade"><br>
+    <button onclick="calculateGrade()">Compute</button>
+    <p id="result2" class="result"></p>
+</div>
+
+<!-- Temperature Converter -->
+<div id="temp" class="content">
+    <h2>Temperature Converter</h2>
+    <input type="number" id="tempValue" placeholder="Enter Temperature">
+    <select id="unit">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+    </select><br>
+    <button onclick="convertTemp()">Convert</button>
+    <p id="result3" class="result"></p>
+</div>
+
+<!-- BMI Calculator -->
+<div id="bmi" class="content">
+    <h2>BMI Calculator</h2>
+    <input type="number" id="weight" placeholder="Weight (kg)">
+    <input type="number" id="height" placeholder="Height (m)"><br>
+    <button onclick="calculateBMI()">Calculate</button>
+    <p id="result4" class="result"></p>
+</div>
+
+<!-- Even or Odd -->
+<div id="evenodd" class="content">
+    <h2>Even or Odd Checker</h2>
+    <input type="number" id="num" placeholder="Enter a number"><br>
+    <button onclick="checkEvenOdd()">Check</button>
+    <p id="result5" class="result"></p>
+</div>
+
+<footer>© 2025 Group 3 | Function Mini Projects | Colegio de Montalban</footer>
+
+<script>
+    // 🔹 Tab Navigation
+    function showTab(tabId) {
+        document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        event.target.closest('button').classList.add('active');
+    }
+
+    // 🔹 Calculator Functions
+    function getValues() {
+        return [parseFloat(document.getElementById("n1").value),
+                parseFloat(document.getElementById("n2").value)];
+    }
+    function add() {
+        let [a, b] = getValues();
+        document.getElementById("result1").innerHTML = "Sum: " + (a + b);
+    }
+    function subtract() {
+        let [a, b] = getValues();
+        document.getElementById("result1").innerHTML = "Difference: " + (a - b);
+    }
+    function multiply() {
+        let [a, b] = getValues();
+        document.getElementById("result1").innerHTML = "Product: " + (a * b);
+    }
+    function divide() {
+        let [a, b] = getValues();
+        document.getElementById("result1").innerHTML = b !== 0 ? "Quotient: " + (a / b) : "Cannot divide by zero!";
+    }
+
+    // 🔹 Grade Calculator
+    function calculateGrade() {
+        let p = parseFloat(document.getElementById("prelim").value);
+        let m = parseFloat(document.getElementById("midterm").value);
+        let f = parseFloat(document.getElementById("final").value);
+        if (isNaN(p) || isNaN(m) || isNaN(f)) {
+            document.getElementById("result2").innerHTML = "Please fill all fields.";
+            return;
+        }
+        let avg = (p + m + f) / 3;
+        let remarks = avg >= 75 ? "PASSED ✅" : "FAILED ❌";
+        document.getElementById("result2").innerHTML = `Average: ${avg.toFixed(2)}<br>Remarks: ${remarks}`;
+    }
+
+    // 🔹 Temperature Converter
+    function convertTemp() {
+        let temp = parseFloat(document.getElementById("tempValue").value);
+        let unit = document.getElementById("unit").value;
+        if (isNaN(temp)) {
+            document.getElementById("result3").innerHTML = "Please enter a temperature.";
+            return;
+        }
+        let result = "";
+        if (unit === "C") {
+            result = `${temp}°C = ${(temp * 9/5 + 32).toFixed(2)}°F = ${(temp + 273.15).toFixed(2)}K`;
+        } else if (unit === "F") {
+            result = `${temp}°F = ${((temp - 32) * 5/9).toFixed(2)}°C = ${((temp - 32) * 5/9 + 273.15).toFixed(2)}K`;
+        } else {
+            result = `${temp}K = ${(temp - 273.15).toFixed(2)}°C = ${((temp - 273.15) * 9/5 + 32).toFixed(2)}°F`;
+        }
+        document.getElementById("result3").innerHTML = result;
+    }
+
+    // 🔹 BMI Calculator
+    function calculateBMI() {
+        let w = parseFloat(document.getElementById("weight").value);
+        let h = parseFloat(document.getElementById("height").value);
+        if (isNaN(w) || isNaN(h) || h <= 0) {
+            document.getElementById("result4").innerHTML = "Enter valid weight and height.";
+            return;
+        }
+        let bmi = w / (h * h);
+        let category = "";
+        if (bmi < 18.5) category = "Underweight";
+        else if (bmi < 25) category = "Normal";
+        else if (bmi < 30) category = "Overweight";
+        else category = "Obese";
+        document.getElementById("result4").innerHTML = `BMI: ${bmi.toFixed(2)} (${category})`;
+    }
+
+    // 🔹 Even or Odd
+    function checkEvenOdd() {
+        let num = parseInt(document.getElementById("num").value);
+        if (isNaN(num)) {
+            document.getElementById("result5").innerHTML = "Please enter a number.";
+            return;
+        }
+        let result = num % 2 === 0 ? "Even Number" : "Odd Number";
+        document.getElementById("result5").innerHTML = result;
+    }
+</script>
+</body>
+</html>
